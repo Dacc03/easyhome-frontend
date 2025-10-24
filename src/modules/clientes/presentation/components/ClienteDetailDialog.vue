@@ -1,0 +1,357 @@
+<script setup>
+import { computed } from 'vue';
+
+const props = defineProps({
+  visible: {
+    type: Boolean,
+    required: true
+  },
+  cliente: {
+    type: Object,
+    default: null
+  }
+});
+
+const emit = defineEmits(['update:visible']);
+
+const formatCurrency = (value) => {
+  return new Intl.NumberFormat('es-PE', {
+    style: 'currency',
+    currency: 'PEN',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  }).format(value);
+};
+
+const formatDate = (dateString) => {
+  if (!dateString) return 'N/A';
+  const date = new Date(dateString);
+  return new Intl.DateTimeFormat('es-PE', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  }).format(date);
+};
+
+const handleClose = () => {
+  emit('update:visible', false);
+};
+</script>
+
+<template>
+  <Dialog
+      :visible="visible"
+      :style="{ width: '900px', maxHeight: '90vh' }"
+      header="Detalles del Cliente"
+      :modal="true"
+      :appendTo="'body'"
+      :blockScroll="true"
+      class="cliente-detail-dialog"
+      @update:visible="handleClose"
+  >
+    <div v-if="cliente" class="detail-container">
+      <!-- Información del Cliente -->
+      <div class="section">
+        <div class="section-header">
+          <i class="pi pi-user section-icon"></i>
+          <h3 class="section-title">Información del Cliente</h3>
+        </div>
+
+        <div class="grid">
+          <div class="col-12">
+            <div class="detail-item">
+              <span class="detail-label">ID:</span>
+              <span class="detail-value font-bold">#{{ cliente.id }}</span>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="detail-item">
+              <span class="detail-label">Nombres y Apellidos:</span>
+              <span class="detail-value">{{ cliente.nombresApellidos }}</span>
+            </div>
+          </div>
+
+          <div class="col-12 md:col-6">
+            <div class="detail-item">
+              <span class="detail-label">DNI:</span>
+              <span class="detail-value font-mono">{{ cliente.dni }}</span>
+            </div>
+          </div>
+
+          <div class="col-12 md:col-6">
+            <div class="detail-item">
+              <span class="detail-label">Edad:</span>
+              <span class="detail-value">{{ cliente.edad }} años</span>
+            </div>
+          </div>
+
+          <div class="col-12 md:col-6">
+            <div class="detail-item">
+              <span class="detail-label">Estado Civil:</span>
+              <span class="estado-civil-badge">{{ cliente.estadoCivil }}</span>
+            </div>
+          </div>
+
+          <div class="col-12 md:col-6">
+            <div class="detail-item">
+              <span class="detail-label">Ingreso Familiar:</span>
+              <span class="detail-value text-success font-bold">
+                {{ formatCurrency(cliente.ingresoFamiliar) }}
+              </span>
+            </div>
+          </div>
+
+          <div class="col-12 md:col-6">
+            <div class="detail-item">
+              <span class="detail-label">Aporte:</span>
+              <span class="detail-value text-primary font-bold">
+                {{ formatCurrency(cliente.aporte) }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <Divider />
+
+      <!-- Información de la Vivienda -->
+      <div class="section">
+        <div class="section-header">
+          <i class="pi pi-home section-icon"></i>
+          <h3 class="section-title">Información de la Vivienda</h3>
+        </div>
+
+        <div v-if="cliente.vivienda" class="grid">
+          <div class="col-12 md:col-6">
+            <div class="detail-item">
+              <span class="detail-label">Proyecto:</span>
+              <span class="detail-value">{{ cliente.vivienda.proyecto || 'N/A' }}</span>
+            </div>
+          </div>
+
+          <div class="col-12 md:col-6">
+            <div class="detail-item">
+              <span class="detail-label">Nombre de la Vivienda:</span>
+              <span class="detail-value">{{ cliente.vivienda.nombreVivienda || 'N/A' }}</span>
+            </div>
+          </div>
+
+          <div class="col-12 md:col-6">
+            <div class="detail-item">
+              <span class="detail-label">Tipo de Vivienda:</span>
+              <span class="detail-value">{{ cliente.vivienda.tipoVivienda || 'N/A' }}</span>
+            </div>
+          </div>
+
+          <div class="col-12 md:col-6">
+            <div class="detail-item">
+              <span class="detail-label">Ubicación:</span>
+              <span class="detail-value">{{ cliente.vivienda.ubicacion || 'N/A' }}</span>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="detail-item">
+              <span class="detail-label">Precio:</span>
+              <span class="detail-value text-primary font-bold text-xl">
+                {{ formatCurrency(cliente.vivienda.precio || 0) }}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div v-else class="text-center text-secondary py-3">
+          <p>No hay información de vivienda registrada</p>
+        </div>
+      </div>
+
+      <Divider />
+
+      <!-- Información de Registro -->
+      <div class="section">
+        <div class="section-header">
+          <i class="pi pi-calendar section-icon"></i>
+          <h3 class="section-title">Información de Registro</h3>
+        </div>
+
+        <div class="grid">
+          <div class="col-12 md:col-6">
+            <div class="detail-item">
+              <span class="detail-label">Fecha de Creación:</span>
+              <span class="detail-value">{{ formatDate(cliente.createdAt) }}</span>
+            </div>
+          </div>
+
+          <div class="col-12 md:col-6">
+            <div class="detail-item">
+              <span class="detail-label">Última Actualización:</span>
+              <span class="detail-value">{{ formatDate(cliente.updatedAt) }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <template #footer>
+      <div class="flex justify-content-end">
+        <Button
+            label="Cerrar"
+            icon="pi pi-times"
+            class="p-button-secondary"
+            @click="handleClose"
+        />
+      </div>
+    </template>
+  </Dialog>
+</template>
+
+<style scoped>
+.detail-container {
+  padding: 0;
+}
+
+.section {
+  margin-bottom: 1.5rem;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.section-icon {
+  font-size: 1.75rem;
+  color: #059669;
+}
+
+.section-title {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: #374151;
+  margin: 0;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem 0;
+}
+
+.detail-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.detail-value {
+  font-size: 1.0625rem;
+  color: #374151;
+  word-break: break-word;
+  font-weight: 500;
+}
+
+.estado-civil-badge {
+  display: inline-block;
+  padding: 0.375rem 0.875rem;
+  border-radius: 16px;
+  background: #d1fae5;
+  color: #065f46;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.text-success {
+  color: #10b981;
+}
+
+.text-primary {
+  color: #059669;
+}
+
+.text-secondary {
+  color: #6b7280;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-mono {
+  font-family: 'Courier New', monospace;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+}
+
+:deep(.p-dialog) {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+:deep(.p-dialog .p-dialog-header) {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  color: white;
+  border-bottom: none;
+  padding: 2rem 2.5rem;
+  border-radius: 12px 12px 0 0;
+}
+
+:deep(.p-dialog .p-dialog-title) {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: white;
+}
+
+:deep(.p-dialog .p-dialog-header-icon) {
+  color: white;
+}
+
+:deep(.p-dialog .p-dialog-header-icon:hover) {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+:deep(.p-dialog .p-dialog-content) {
+  padding: 2.5rem;
+  background: white;
+  overflow-y: auto;
+  max-height: calc(90vh - 200px);
+}
+
+:deep(.p-dialog .p-dialog-footer) {
+  padding: 1.5rem 2.5rem;
+  background: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+  border-radius: 0 0 12px 12px;
+}
+
+:deep(.p-button.p-button-secondary) {
+  background: #6b7280;
+  border-color: #6b7280;
+  color: white;
+  padding: 0.875rem 2rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+:deep(.p-button.p-button-secondary:hover) {
+  background: #4b5563;
+  border-color: #4b5563;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+:deep(.p-divider) {
+  margin: 1.5rem 0;
+}
+</style>

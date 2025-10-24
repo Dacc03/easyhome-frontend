@@ -1,0 +1,336 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "email": "admin@easyhome.com",
+      "password": "admin123",
+      "firstName": "Admin",
+      "lastName": "EasyHome",
+      "role": "admin",
+      "isActive": true,
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "username": "usuario",
+      "email": "usuario@easyhome.com",
+      "password": "usuario123",
+      "firstName": "Usuario",
+      "lastName": "Demo",
+      "role": "user",
+      "isActive": true,
+      "createdAt": "2024-01-02T00:00:00.000Z",
+      "updatedAt": "2024-01-02T00:00:00.000Z"
+    },
+    {
+      "username": "Deybbi",
+      "email": "dacc2003.24@gmail.com",
+      "password": "Dacc2003",
+      "firstName": "Deybbi",
+      "lastName": "Crisanto",
+      "role": "user",
+      "isActive": true,
+      "createdAt": "2025-10-03T11:07:19.303Z",
+      "updatedAt": "2025-10-03T11:07:19.303Z",
+      "id": 3
+    },
+    {
+      "username": "Nohe",
+      "email": "nohepoma25@gmail.com",
+      "password": "Nohe$po",
+      "firstName": "Nohely",
+      "lastName": "Poma",
+      "role": "user",
+      "isActive": true,
+      "createdAt": "2025-10-03T14:13:01.176Z",
+      "updatedAt": "2025-10-03T14:13:01.176Z",
+      "id": 4
+    },
+    {
+      "username": "July",
+      "email": "cuentasjuly16@gmail.com",
+      "password": "July123",
+      "firstName": "July",
+      "lastName": "Paico",
+      "role": "user",
+      "isActive": true,
+      "createdAt": "2025-10-04T13:03:41.529Z",
+      "updatedAt": "2025-10-04T13:03:41.529Z",
+      "id": 5
+    }
+  ],
+  "clientes": [
+    {
+      "id": 1,
+      "nombresApellidos": "Juan Carlos Pérez García",
+      "dni": "12345678",
+      "edad": 35,
+      "ingresoFamiliar": 3500,
+      "aporte": 15000,
+      "estadoCivil": "Casado",
+      "vivienda": {
+        "proyecto": "Residencial Los Pinos",
+        "nombreVivienda": "Casa Primavera",
+        "tipoVivienda": "Casa Independiente",
+        "ubicacion": "San Isidro, Lima",
+        "precio": 250000
+      },
+      "createdAt": "2024-01-15T10:30:00.000Z",
+      "updatedAt": "2024-01-15T10:30:00.000Z"
+    },
+    {
+      "id": 2,
+      "nombresApellidos": "María Elena Rodríguez López",
+      "dni": "23456789",
+      "edad": 28,
+      "ingresoFamiliar": 4200.5,
+      "aporte": 20000,
+      "estadoCivil": "Soltero",
+      "vivienda": {
+        "proyecto": "Torres del Sol",
+        "nombreVivienda": "Depto 402",
+        "tipoVivienda": "Departamento",
+        "ubicacion": "Miraflores, Lima",
+        "precio": 180000
+      },
+      "createdAt": "2024-01-16T11:20:00.000Z",
+      "updatedAt": "2024-01-16T11:20:00.000Z"
+    },
+    {
+      "id": 3,
+      "nombresApellidos": "Carlos Alberto Fernández Vega",
+      "dni": "34567890",
+      "edad": 42,
+      "ingresoFamiliar": 5000,
+      "aporte": 25000,
+      "estadoCivil": "Casado",
+      "vivienda": {
+        "proyecto": "Urbanización Las Flores",
+        "nombreVivienda": "Duplex A-15",
+        "tipoVivienda": "Dúplex",
+        "ubicacion": "Surco, Lima",
+        "precio": 320000
+      },
+      "createdAt": "2024-01-17T09:15:00.000Z",
+      "updatedAt": "2024-01-17T09:15:00.000Z"
+    },
+    {
+      "id": 4,
+      "nombresApellidos": "Ana Sofía Gutiérrez Mendoza",
+      "dni": "45678901",
+      "edad": 38,
+      "ingresoFamiliar": 3800,
+      "aporte": 18000,
+      "estadoCivil": "Divorciado",
+      "vivienda": {
+        "proyecto": "Condominio El Bosque",
+        "nombreVivienda": "Casa Verde",
+        "tipoVivienda": "Casa en Condominio",
+        "ubicacion": "La Molina, Lima",
+        "precio": 280000
+      },
+      "createdAt": "2024-01-18T14:45:00.000Z",
+      "updatedAt": "2024-01-18T14:45:00.000Z"
+    },
+    {
+      "id": 5,
+      "nombresApellidos": "Luis Fernando Sánchez Torres",
+      "dni": "56789012",
+      "edad": 31,
+      "ingresoFamiliar": 4500,
+      "aporte": 22000,
+      "estadoCivil": "Conviviente",
+      "vivienda": {
+        "proyecto": "Residencial Costa Azul",
+        "nombreVivienda": "Townhouse B-8",
+        "tipoVivienda": "Townhouse",
+        "ubicacion": "Barranco, Lima",
+        "precio": 295000
+      },
+      "createdAt": "2024-01-19T16:30:00.000Z",
+      "updatedAt": "2024-01-19T16:30:00.000Z"
+    },
+    {
+      "id": 6,
+      "nombresApellidos": "Patricia Isabel Ramírez Castro",
+      "dni": "67890123",
+      "edad": 45,
+      "ingresoFamiliar": 3200,
+      "aporte": 12000,
+      "estadoCivil": "Viudo",
+      "vivienda": {
+        "proyecto": "Villa Hermosa",
+        "nombreVivienda": "Casa del Valle",
+        "tipoVivienda": "Quinta",
+        "ubicacion": "Ate, Lima",
+        "precio": 220000
+      },
+      "createdAt": "2024-01-20T08:00:00.000Z",
+      "updatedAt": "2024-01-20T08:00:00.000Z"
+    },
+    {
+      "id": 7,
+      "nombresApellidos": "Roberto Miguel Flores Herrera",
+      "dni": "78901234",
+      "edad": 52,
+      "ingresoFamiliar": 5500,
+      "aporte": 30000,
+      "estadoCivil": "Casado",
+      "vivienda": {
+        "proyecto": "Edificio Panorama",
+        "nombreVivienda": "Depto 1201",
+        "tipoVivienda": "Loft",
+        "ubicacion": "San Borja, Lima",
+        "precio": 350000
+      },
+      "createdAt": "2024-01-21T10:15:00.000Z",
+      "updatedAt": "2024-01-21T10:15:00.000Z"
+    },
+    {
+      "id": 8,
+      "nombresApellidos": "Diana Carolina Morales Quispe",
+      "dni": "89012345",
+      "edad": 29,
+      "ingresoFamiliar": 4000,
+      "aporte": 19000,
+      "estadoCivil": "Soltero",
+      "vivienda": {
+        "proyecto": "Residencial El Parque",
+        "nombreVivienda": "Duplex C-22",
+        "tipoVivienda": "Triplex",
+        "ubicacion": "Jesús María, Lima",
+        "precio": 265000
+      },
+      "createdAt": "2024-01-22T13:20:00.000Z",
+      "updatedAt": "2024-01-22T13:20:00.000Z"
+    },
+    {
+      "id": 9,
+      "nombresApellidos": "Jorge Luis Vásquez Mendoza",
+      "dni": "90123456",
+      "edad": 40,
+      "ingresoFamiliar": 4800,
+      "aporte": 23000,
+      "estadoCivil": "Casado",
+      "vivienda": {
+        "proyecto": "Condominio Los Álamos",
+        "nombreVivienda": "Casa Familiar",
+        "tipoVivienda": "Casa Independiente",
+        "ubicacion": "Pueblo Libre, Lima",
+        "precio": 310000
+      },
+      "createdAt": "2024-01-23T09:30:00.000Z",
+      "updatedAt": "2024-01-23T09:30:00.000Z"
+    },
+    {
+      "id": 10,
+      "nombresApellidos": "Carmen Rosa Delgado Jiménez",
+      "dni": "01234567",
+      "edad": 33,
+      "ingresoFamiliar": 3600,
+      "aporte": 16000,
+      "estadoCivil": "Soltero",
+      "vivienda": {
+        "proyecto": "Torres Belaúnde",
+        "nombreVivienda": "Depto 805",
+        "tipoVivienda": "Departamento",
+        "ubicacion": "Lince, Lima",
+        "precio": 195000
+      },
+      "createdAt": "2024-01-24T11:45:00.000Z",
+      "updatedAt": "2024-01-24T11:45:00.000Z"
+    },
+    {
+      "id": 11,
+      "nombresApellidos": "Miguel Ángel Campos Rojas",
+      "dni": "11223344",
+      "edad": 47,
+      "ingresoFamiliar": 5200,
+      "aporte": 27000,
+      "estadoCivil": "Conviviente",
+      "vivienda": {
+        "proyecto": "Urbanización Santa Rosa",
+        "nombreVivienda": "Townhouse D-5",
+        "tipoVivienda": "Townhouse",
+        "ubicacion": "San Miguel, Lima",
+        "precio": 285000
+      },
+      "createdAt": "2024-01-25T15:20:00.000Z",
+      "updatedAt": "2024-01-25T15:20:00.000Z"
+    },
+    {
+      "id": 12,
+      "nombresApellidos": "Sandra Paola Quispe Huamán",
+      "dni": "22334455",
+      "edad": 36,
+      "ingresoFamiliar": 3900,
+      "aporte": 17500,
+      "estadoCivil": "Divorciado",
+      "vivienda": {
+        "proyecto": "Residencial Los Cipreses",
+        "nombreVivienda": "Casa Moderna",
+        "tipoVivienda": "Casa en Condominio",
+        "ubicacion": "Villa El Salvador, Lima",
+        "precio": 210000
+      },
+      "createdAt": "2024-01-26T08:10:00.000Z",
+      "updatedAt": "2024-01-26T08:10:00.000Z"
+    },
+    {
+      "id": 13,
+      "nombresApellidos": "Fernando José Alvarado Córdova",
+      "dni": "33445566",
+      "edad": 55,
+      "ingresoFamiliar": 6000,
+      "aporte": 32000,
+      "estadoCivil": "Casado",
+      "vivienda": {
+        "proyecto": "Torres Premium",
+        "nombreVivienda": "Penthouse 1502",
+        "tipoVivienda": "Loft",
+        "ubicacion": "San Isidro, Lima",
+        "precio": 450000
+      },
+      "createdAt": "2024-01-27T10:00:00.000Z",
+      "updatedAt": "2024-01-27T10:00:00.000Z"
+    },
+    {
+      "id": 14,
+      "nombresApellidos": "Lucía Fernanda Torres Méndez",
+      "dni": "44556677",
+      "edad": 27,
+      "ingresoFamiliar": 4100,
+      "aporte": 19500,
+      "estadoCivil": "Soltero",
+      "vivienda": {
+        "proyecto": "Condominio Las Palmeras",
+        "nombreVivienda": "Duplex E-10",
+        "tipoVivienda": "Dúplex",
+        "ubicacion": "Chorrillos, Lima",
+        "precio": 275000
+      },
+      "createdAt": "2024-01-28T14:30:00.000Z",
+      "updatedAt": "2024-01-28T14:30:00.000Z"
+    },
+    {
+      "id": 15,
+      "nombresApellidos": "Raúl Eduardo Paredes Silva",
+      "dni": "55667788",
+      "edad": 44,
+      "ingresoFamiliar": 4700,
+      "aporte": 24000,
+      "estadoCivil": "Casado",
+      "vivienda": {
+        "proyecto": "Residencial Vista Alegre",
+        "nombreVivienda": "Casa del Mar",
+        "tipoVivienda": "Casa de Playa",
+        "ubicacion": "Magdalena, Lima",
+        "precio": 305000
+      },
+      "createdAt": "2024-01-29T16:45:00.000Z",
+      "updatedAt": "2024-01-29T16:45:00.000Z"
+    }
+  ]
+}
