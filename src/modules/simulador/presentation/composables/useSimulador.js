@@ -167,28 +167,77 @@ export const useSimulador = () => {
     };
 
     /**
-     * Exporta el cronograma a Excel (simulado)
+     * Exporta el cronograma a un archivo compatible con Excel
      */
-    const exportarCronograma = () => {
-        if (!simulacionActual.value?.cronogramaPagos) {
+    const exportarCronograma = (fileName = 'cronograma_pagos.xls') => {
+        const cronograma = simulacionActual.value?.cronogramaPagos;
+
+        if (!Array.isArray(cronograma) || cronograma.length === 0) {
             throw new Error('No hay cronograma para exportar');
         }
 
-        // Aquí se podría implementar la exportación real a Excel
-        // Por ahora solo retornamos los datos formateados
-        const datos = simulacionActual.value.cronogramaPagos.map(pago => ({
-            'N° Cuota': pago.numeroCuota,
-            'Fecha': pago.fechaPago,
-            'Saldo Inicial': `S/ ${pago.saldoInicial.toFixed(2)}`,
-            'Cuota Base': `S/ ${pago.cuotaBase.toFixed(2)}`,
-            'Interés': `S/ ${pago.interes.toFixed(2)}`,
-            'Amortización': `S/ ${pago.amortizacion.toFixed(2)}`,
-            'Seguros': `S/ ${pago.seguros.toFixed(2)}`,
-            'Cuota Total': `S/ ${pago.cuotaTotal.toFixed(2)}`,
-            'Saldo Final': `S/ ${pago.saldoFinal.toFixed(2)}`
-        }));
+        const formatCurrency = (valor) => {
+            const numero = Number.parseFloat(valor ?? 0);
+            const seguro = Number.isFinite(numero) ? numero : 0;
+            return `S/ ${seguro.toFixed(2)}`;
+        };
 
-        return datos;
+        const headerRow = [
+            'N° Cuota',
+            'Fecha de Pago',
+            'Saldo Inicial',
+            'Cuota Base',
+            'Interés',
+            'Amortización',
+            'Seguros',
+            'Cuota Total',
+            'Saldo Final'
+        ];
+
+        const rows = cronograma.map(pago => [
+            pago.numeroCuota ?? '',
+            pago.fechaPago ?? '',
+            formatCurrency(pago.saldoInicial),
+            formatCurrency(pago.cuotaBase),
+            formatCurrency(pago.interes),
+            formatCurrency(pago.amortizacion),
+            formatCurrency(pago.seguros),
+            formatCurrency(pago.cuotaTotal),
+            formatCurrency(pago.saldoFinal)
+        ]);
+
+        const tableRows = [headerRow, ...rows]
+            .map(
+                row => `<tr>${row
+                    .map(value => `<td>${String(value).replace(/</g, '&lt;').replace(/>/g, '&gt;')}</td>`)
+                    .join('')}</tr>`
+            )
+            .join('');
+
+        const tableHtml = [
+            '<!DOCTYPE html>',
+            '<html>',
+            '  <head>',
+            '    <meta charset="UTF-8" />',
+            '  </head>',
+            '  <body>',
+            `    <table>${tableRows}</table>`,
+            '  </body>',
+            '</html>'
+        ].join('\n');
+
+        const blob = new Blob([`\ufeff${tableHtml}`], {
+            type: 'application/vnd.ms-excel'
+        });
+
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
     };
 
     /**

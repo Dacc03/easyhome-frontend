@@ -18,7 +18,8 @@ const {
   programasVivienda,
   fetchEntidadesFinancieras,
   fetchProgramasVivienda,
-  tieneSimulacion
+  tieneSimulacion,
+  exportarCronograma
 } = useSimulador();
 
 const { allClientes, fetchClientes } = useClientes();
@@ -186,9 +187,37 @@ const handleCostosGuardados = (costos) => {
   costosDialogVisible.value = false;
 };
 
+const handleExportCronograma = () => {
+  try {
+    const fecha = new Date().toISOString().split('T')[0];
+    exportarCronograma(`cronograma_pagos_${fecha}.xls`);
+    toast.add({
+      severity: 'success',
+      summary: 'Exportación completada',
+      detail: 'El cronograma se exportó correctamente en Excel',
+      life: 3000
+    });
+  } catch (error) {
+    toast.add({
+      severity: 'error',
+      summary: 'Error al exportar',
+      detail: error.message || 'No fue posible exportar el cronograma',
+      life: 3000
+    });
+  }
+};
+
 const verCronograma = () => {
-  if (simulacionActual.value?.cronogramaPagos) {
+  if (simulacionActual.value?.cronogramaPagos?.length > 0) {
+    handleExportCronograma();
     cronogramaDialogVisible.value = true;
+  } else {
+    toast.add({
+      severity: 'warn',
+      summary: 'Sin cronograma',
+      detail: 'Debe calcular una simulación antes de ver el cronograma',
+      life: 3000
+    });
   }
 };
 
@@ -546,6 +575,7 @@ onMounted(async () => {
     <CronogramaDialog
         v-model:visible="cronogramaDialogVisible"
         :cronograma="simulacionActual?.cronogramaPagos"
+        @export="handleExportCronograma"
     />
 
     <!-- Toast -->

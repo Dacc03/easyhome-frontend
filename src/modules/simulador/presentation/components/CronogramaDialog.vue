@@ -12,7 +12,7 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits(['update:visible']);
+const emit = defineEmits(['update:visible', 'export']);
 
 // Computed
 const cronogramaData = computed(() => {
@@ -71,8 +71,7 @@ const handleClose = () => {
 };
 
 const exportarExcel = () => {
-  // Aquí se podría implementar la exportación real a Excel
-  console.log('Exportando cronograma a Excel...');
+  emit('export');
 };
 </script>
 
@@ -175,6 +174,7 @@ const exportarExcel = () => {
             icon="pi pi-file-excel"
             class="p-button-success"
             @click="exportarExcel"
+            :disabled="!cronograma || cronograma.length === 0"
         />
         <Button
             label="Cerrar"
